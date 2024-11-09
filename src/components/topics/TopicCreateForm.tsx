@@ -30,7 +30,7 @@ export default function TopicCreateForm() {
               labelPlacement="outside"
               placeholder="Name"
               isInvalid={!!formState.errors.name}
-              errorMessage={formState.errors?.name?.join(', ')}
+              errorMessage={formState.errors?.name?.join(", ")}
             />
             <Textarea
               name="description"
@@ -38,8 +38,13 @@ export default function TopicCreateForm() {
               labelPlacement="outside"
               placeholder="Description"
               isInvalid={!!formState.errors.description}
-              errorMessage={formState.errors?.description?.join(', ')}
+              errorMessage={formState.errors?.description?.join(", ")}
             />
+            {formState.errors._form && (
+              <div className="rounded p-2 bg-red-200 border border-red-200">
+                {formState.errors._form?.join(", ")}
+              </div>
+            )}
             <Button type="submit">Submit</Button>
           </div>
         </form>
