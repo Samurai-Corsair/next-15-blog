@@ -16,11 +16,24 @@ if (!GITHUB_CLIENT_ID || !GITHUB_CLIENT_SECRET) {
 export const { handlers: { GET, POST }, auth, signOut, signIn } = NextAuth({
     adapter: PrismaAdapter(db),
     providers: [
-        Github({clientId: GITHUB_CLIENT_ID, clientSecret: GITHUB_CLIENT_SECRET})
+        Github({
+            clientId: process.env.GITHUB_CLIENT_ID as string,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+        })
     ],
+    // Добавьте эти настройки
+    pages: {
+        signIn: '/auth/signin',  // страница входа
+        signOut: '/auth/signout',// страница выхода
+        error: '/auth/error',    // страница ошибки
+    },
+    // Добавьте базовый URL
     callbacks: {
-        // debug only
-        async session({session, user}: unknown) {
+        async redirect({ url, baseUrl }) {
+            // После успешной авторизации редирект на главную
+            return baseUrl
+        },
+        async session({session, user}: any) {
             if(session && user){
                 session.user.id = user.id
             }
