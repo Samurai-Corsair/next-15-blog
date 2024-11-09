@@ -7,7 +7,7 @@ import { db } from "../db";
 
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
-const AUTH_SECRET = process.env.AUTH_SECRET;
+// const AUTH_SECRET = process.env.AUTH_SECRET;
 
 if (!GITHUB_CLIENT_ID || !GITHUB_CLIENT_SECRET) {
     throw new Error('Missing github oauth credentials')
@@ -21,19 +21,16 @@ export const { handlers: { GET, POST }, auth, signOut, signIn } = NextAuth({
             clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
         })
     ],
-    // Добавьте эти настройки
     pages: {
-        signIn: '/auth/signin',  // страница входа
-        signOut: '/auth/signout',// страница выхода
-        error: '/auth/error',    // страница ошибки
+        signIn: '/auth/signin',
+        signOut: '/auth/signout',
+        error: '/auth/error',
     },
-    // Добавьте базовый URL
     callbacks: {
-        async redirect({ url, baseUrl }) {
-            // После успешной авторизации редирект на главную
+        async redirect({ baseUrl }) {
             return baseUrl
         },
-        async session({session, user}: any) {
+        async session({session, user}) {
             if(session && user){
                 session.user.id = user.id
             }
