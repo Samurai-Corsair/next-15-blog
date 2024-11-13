@@ -5,6 +5,14 @@ const nextConfig = {
         GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
         AUTH_SECRET: process.env.AUTH_SECRET,
     },
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "avatars.githubusercontent.com",
+            },
+        ],
+    },
 }
 
 module.exports = nextConfig
