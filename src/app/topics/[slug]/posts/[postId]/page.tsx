@@ -3,7 +3,7 @@ import PostContent from "@/components/posts/post-show";
 import CommentList from "@/components/comments/comment-list";
 import CommentCreateForm from "@/components/comments/comment-create-form";
 import paths from "@/paths";
-import {fetchCommentsByPostId} from "../../../../../../db/queries/comments";
+import { fetchCommentsByPostId } from "../../../../../../db/queries/comments";
 
 interface PostShowPageProps {
   params: {
@@ -20,9 +20,9 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
       <Link className="underline decoration-solid" href={paths.topicShow(slug)}>
         {"< "}Back to {slug}
       </Link>
-       <PostContent postId={postId}/>
-       <CommentCreateForm postId={postId} startOpen />
-       <CommentList fetchData={() => fetchCommentsByPostId(postId)} />
+      <PostContent postId={postId} />
+      <CommentCreateForm postId={postId} startOpen />
+      <CommentList fetchData={() => fetchCommentsByPostId(postId)} />
     </div>
   );
 }

@@ -1,19 +1,19 @@
-import Link from 'next/link';
-import paths from '@/paths';
-import type {PostListItem} from "../../../db/queries/posts"
+import Link from "next/link";
+import paths from "@/paths";
+import type { PostListItem } from "../../../db/queries/posts";
 
 interface PostListProps {
-  fetchData: () => Promise<PostListItem[]>
+  fetchData: () => Promise<PostListItem[]>;
 }
 
-export default async function PostList({fetchData}: PostListProps) {
+export default async function PostList({ fetchData }: PostListProps) {
   const posts = await fetchData();
 
   const renderedPosts = posts.map((post) => {
     const topicSlug = post.topic.slug;
 
     if (!topicSlug) {
-      throw new Error('Need a slug to link to a post');
+      throw new Error("Need a slug to link to a post");
     }
 
     return (

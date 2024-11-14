@@ -4,7 +4,7 @@ import { db } from "../index";
 export type PostListItem = Post & {
   topic: { slug: string };
   user: { name: string | null };
-  _count: { comments : number };
+  _count: { comments: number };
 };
 
 export function fetchPostsByTopicSlug(slug: string): Promise<PostListItem> {
