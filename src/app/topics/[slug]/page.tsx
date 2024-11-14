@@ -1,4 +1,6 @@
 import PostsCreateForm from "@/components/posts/PostsCreateForm";
+import PostList from "@/components/posts/post-list";
+import { fetchPostsByTopicSlug } from "../../../../db/queries/posts";
 
 interface TopicShowPageProps {
   params: {
@@ -12,11 +14,12 @@ export default function TopicShowPage({ params }: TopicShowPageProps) {
     <div className="grid grid-cols-4 gap-4 p-4">
       <div className="col-span-3">
         <h1 className="text-2xl fold-bold mb-2">{slug}</h1>
+        <PostList fetchData={() => fetchPostsByTopicSlug(slug)} />
       </div>
 
-        <div>
-            <PostsCreateForm slug={slug} />
-        </div>
+      <div>
+        <PostsCreateForm slug={slug} />
+      </div>
     </div>
   );
 }
