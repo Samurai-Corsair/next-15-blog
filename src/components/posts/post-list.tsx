@@ -1,10 +1,10 @@
 import type { Post, User, Topic } from '@prisma/client';
 import Link from 'next/link';
 import paths from '@/paths';
-import type {PostWithData} from "../../../db/queries/posts"
+import type {PostListItem} from "../../../db/queries/posts"
 
 interface PostListProps {
-  fetchData: () => Promise<PostWithData[]>
+  fetchData: () => Promise<PostListItem[]>
 }
 
 export default async function PostList({fetchData}: PostListProps) {
