@@ -6,6 +6,9 @@ interface PostShowProps {
 }
 
 export default async function PostContent({ postId }: PostShowProps) {
+  // Simulate loading to see skeleton
+  await new Promise(resolve => { setTimeout(resolve, 1000)});
+
   const post = await db.post.findFirst({
     where: { id: postId },
   });
