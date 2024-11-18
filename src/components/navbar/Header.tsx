@@ -1,6 +1,5 @@
 "use client";
 import {
-  Input,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -8,6 +7,8 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 import AuthContent from "@/components/navbar/AuthContent";
+import SearchInput from "@/components/navbar/SearchInput";
+import { Suspense } from "react";
 
 export default function Header() {
   return (
@@ -19,11 +20,13 @@ export default function Header() {
       </NavbarBrand>
       <NavbarContent justify="center">
         <NavbarItem>
-          <Input />
+          <Suspense>
+            <SearchInput />
+          </Suspense>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-          <AuthContent />
+        <AuthContent />
       </NavbarContent>
     </Navbar>
   );
